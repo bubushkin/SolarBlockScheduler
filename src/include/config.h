@@ -29,4 +29,3 @@ char *get_config(char *);
 _entry *init_entry();
 
 #endif /* INCLUDE_CONFIG_H_ */
-
