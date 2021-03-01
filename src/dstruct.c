@@ -61,7 +61,6 @@ _entry *init_entry(char *apkey, char *apval){
 
 void add_entry(struct list_ *aplist, _entry *apentry){
 
-
 	if(aplist->pentry == NULL){
 		aplist->pentry = apentry;
 	} else{

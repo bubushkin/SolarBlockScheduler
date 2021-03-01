@@ -9,7 +9,6 @@
 #define INCLUDE_DSTRUCT_H_
 
 #include <stdlib.h>
-#include <error.h>
 #include <string.h>
 
 

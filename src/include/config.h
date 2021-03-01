@@ -14,16 +14,18 @@
 typedef struct config_{
 
 	FILE *fp;
-	_list *pentries;
+	_list *ientries;
 
 	char *(*pf_get_config)(struct config_ *, char *);
 	void (*pf_init_entry)();
+	_entry *(*pf_parse_entries)(struct config_ *);
 
 } _config;
 
 _config * init_config(char *);
 void destruct_config(_config *);
 char *get_config(struct config_ *, char *);
+char **split(char *, char);
 
 _entry *parse_entries(struct config_ *);
 

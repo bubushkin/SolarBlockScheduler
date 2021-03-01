@@ -12,10 +12,17 @@
 #include <stdlib.h>
 #include "include/config.h"
 
+
 int main(void) {
 
-	_config *c = init_config("conf/sbs.conf");
-	printf("%s: %s\n", c->pentries->pentry->key, c->pentries->pentry->value);
+    system("pwd");
+	_config *c = init_config("../conf/sbs.conf");
+
+    char **buffer = split("log=/var/log/sbs.log", '=');
+    printf("%s", buffer[1]);
+
+
+
 
 	return EXIT_SUCCESS;
 }
