@@ -24,4 +24,7 @@
 #elif __LINUX__
     #define eeprint(X) error(0x1, EXIT_FAILURE, "%s, %d, %s\n",__FILE__, __LINE__, X)
 #endif
+
+char **split(char *, char);
+
 #endif /* INCLUDE_UTIL_H_ */

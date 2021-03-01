@@ -44,7 +44,6 @@ void parse_entries(struct config_ *apconfig){
         free(buffer[1]);
 	}
 
-	return NULL;
 }
 
 void destruct_config(_config *apconfig){

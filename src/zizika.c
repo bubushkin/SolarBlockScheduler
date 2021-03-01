@@ -15,13 +15,8 @@
 
 int main(void) {
 
-    system("pwd");
 	_config *c = init_config("../conf/sbs.conf");
 	c->pf_parse_entries(c);
-
-
-
-
 
 	return EXIT_SUCCESS;
 }

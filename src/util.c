@@ -28,7 +28,8 @@ char **split(char *apline, char delim){
             continue;
         }
         if(found){
-            buffer[1][xdx++] = c;
+            if(c != '\n')
+                buffer[1][xdx++] = c;
         }
     }
     return buffer;
