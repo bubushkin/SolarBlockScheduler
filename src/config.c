@@ -29,6 +29,8 @@ _config * init_config(char *apath){
 	iconfig->pf_get_config = &get_config;
 	iconfig->pf_parse_entries = &parse_entries;
 
+	iconfig->pf_parse_entries(iconfig);
+
 	return iconfig;
 }
 
@@ -52,8 +54,12 @@ void destruct_config(_config *apconfig){
         free(apconfig);
 		eeprint("Unable to close config file");
 	}
-	free(apconfig);
 
+	destruct_list(apconfig->ientries);
+	apconfig->pf_init_entry = NULL;
+	apconfig->pf_parse_entries = NULL;
+	apconfig->pf_get_config = NULL;
+	free(apconfig);
 }
 
 char *get_config(struct config_ *apconfig, char *apkey){

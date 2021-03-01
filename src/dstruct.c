@@ -16,14 +16,21 @@ _list *init_list(){
 	}
 
 	ilist->pf_add = &add_entry;
-	ilist->pf_remove = &remove_entry;
 	ilist->pf_get = &get;
 	ilist->pf_init_entry = &init_entry;
 
 	return ilist;
 }
 
-void destruct_list(_list *);
+void destruct_list(_list *aplist){
+
+    destruct_entries(aplist->pentry);
+    aplist->pf_add = NULL;
+    aplist->pf_init_entry = NULL;
+    aplist->pf_get = NULL;
+    free(aplist);
+
+}
 
 _entry *init_entry(char *apkey, char *apval){
 
@@ -66,8 +73,14 @@ void add_entry(struct list_ *aplist, _entry *apentry){
 }
 
 
-void remove_entry(struct list_ *aplist, char *apkey){
+void destruct_entries(_entry *apentry){
 
+    _entry *paux = apentry;
+    while(paux != NULL){
+        free(paux->key);
+        free(paux->value);
+        paux = paux->pnext;
+    }
 }
 _entry *get(_entry *apentry, char *apkey){
 

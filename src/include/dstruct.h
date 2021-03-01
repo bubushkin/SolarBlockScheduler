@@ -33,8 +33,8 @@ typedef struct list_{
 _list * init_list();
 void destruct_list(_list *);
 void add_entry(struct list_ *, _entry *);
+void destruct_entries(_entry *)
 
-void remove_entry(_list *, char *);
 _entry *get(_entry *, char *);
 
 _entry *init_entry(char *, char *);
