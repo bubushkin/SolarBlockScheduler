@@ -18,7 +18,7 @@ typedef struct config_{
 
 	char *(*pf_get_config)(struct config_ *, char *);
 	void (*pf_init_entry)();
-	_entry *(*pf_parse_entries)(struct config_ *);
+	void (*pf_parse_entries)(struct config_ *);
 
 } _config;
 
@@ -27,6 +27,6 @@ void destruct_config(_config *);
 char *get_config(struct config_ *, char *);
 char **split(char *, char);
 
-_entry *parse_entries(struct config_ *);
+void parse_entries(struct config_ *);
 
 #endif /* INCLUDE_CONFIG_H_ */
