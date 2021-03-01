@@ -14,8 +14,8 @@
 
 int main(void) {
 
-	_config *c = init_config("/tmp/file");
-	printf("");
+	_config *c = init_config("conf/sbs.conf");
+	printf("%s: %s\n", c->pentries->pentry->key, c->pentries->pentry->value);
 
 	return EXIT_SUCCESS;
 }

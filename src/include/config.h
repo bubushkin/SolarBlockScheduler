@@ -8,24 +8,23 @@
 #ifndef INCLUDE_CONFIG_H_
 #define INCLUDE_CONFIG_H_
 #include <stdio.h>
-#include "include/dstruct.h"
+#include "dstruct.h"
+#include "util.h"
 
-
-typedef struct
-{
+typedef struct config_{
 
 	FILE *fp;
 	_list *pentries;
 
-	char *(*pget_config)(char *);
-	void (*pinit_entry)();
+	char *(*pf_get_config)(struct config_ *, char *);
+	void (*pf_init_entry)();
 
 } _config;
 
 _config * init_config(char *);
 void destruct_config(_config *);
-char *get_config(char *);
+char *get_config(struct config_ *, char *);
 
-_entry *init_entry();
+_entry *parse_entries(struct config_ *);
 
 #endif /* INCLUDE_CONFIG_H_ */
