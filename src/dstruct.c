@@ -10,12 +10,10 @@
 
 _list *init_list(){
 
-	_list *ilist = (_list *)malloc(sizeof(_list));
+	_list *ilist = new(0x1, _list);
 	if(ilist == NULL){
 		eeprint("Malloc failed");
-		exit(EXIT_FAILURE);
 	}
-	memset(ilist, 0, sizeof(_list));
 
 	ilist->pf_add = &add_entry;
 	ilist->pf_remove = &remove_entry;
@@ -29,32 +27,26 @@ void destruct_list(_list *);
 
 _entry *init_entry(char *apkey, char *apval){
 
-	_entry *ietr = (_entry *) calloc(0x1, sizeof(_entry));
+    _entry *ietr = new(0x1, _entry);
 	if(ietr == NULL){
 		eeprint("Malloc failed");
-		exit(EXIT_FAILURE);
 	}
 
-	ietr->key = (char *) calloc(0x1, strlen(apkey));
+	ietr->key = new(0x1, char);
 	if(ietr->key == NULL){
 		eeprint("Malloc failed");
-
-		exit(EXIT_FAILURE);
 	}
 
-	ietr->value = (char *) calloc(0x1, strlen(apval));
+	ietr->value = new(0x1, char);
 	if(ietr->value == NULL){
 		eeprint("Malloc failed");
-		exit(EXIT_FAILURE);
 	}
 	if(strncpy(ietr->key, apkey, strlen(apkey)) == NULL){
 		eeprint("Unable to generate config entry");
-		exit(EXIT_FAILURE);
 	}
 
 	if(strncpy(ietr->value, apval, strlen(apval)) == NULL){
 		eeprint("Unable to generate config entry");
-		exit(EXIT_FAILURE);
 	}
 	return ietr;
 }
@@ -64,12 +56,13 @@ void add_entry(struct list_ *aplist, _entry *apentry){
 	if(aplist->pentry == NULL){
 		aplist->pentry = apentry;
 	} else{
-		_entry *paux = aplist->pentry->pnext;
-		while(paux != NULL){
+		_entry *paux = aplist->pentry;
+		while(paux->pnext != NULL){
 			paux = paux->pnext;
 		}
-		paux = apentry;
+		paux->pnext = apentry;
 	}
+	aplist->size++;
 }
 
 

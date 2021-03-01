@@ -12,7 +12,7 @@
 
 _config * init_config(char *apath){
 
-	_config *iconfig = (_config *)calloc(0x1, sizeof(_config));
+	_config *iconfig = new(0x1, _config);
 	if(iconfig == NULL){
 		eeprint("Malloc failed");
 		exit(EXIT_FAILURE);
@@ -66,12 +66,12 @@ _entry * parse_entries(struct config_ *apconfig){
 	char line[MAXLEN] = {0};
 
 	while(fgets(line, MAXLEN, apconfig->fp)){
-
+        char **buffer = split(line, '=');
+        _entry *p = apconfig->ientries->pf_init_entry(buffer[0], buffer[1]);
+        apconfig->ientries->pf_add(apconfig->ientries, p);
+        free(buffer[0]);
+        free(buffer[1]);
 	}
-//    _entry *p = iconfig->ientries->pf_init_entry("log", "/etc/log/sbs.log");
-//
-//    iconfig->ientries->pf_add(iconfig->ientries, p);
-
 
 	return NULL;
 }

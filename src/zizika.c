@@ -17,9 +17,8 @@ int main(void) {
 
     system("pwd");
 	_config *c = init_config("../conf/sbs.conf");
+	c->pf_parse_entries(c);
 
-    char **buffer = split("log=/var/log/sbs.log", '=');
-    printf("%s", buffer[1]);
 
 
 
