@@ -66,7 +66,7 @@ char *get_config(struct config_ *apconfig, char *apkey){
 
 	_entry *paux = apconfig->ientries->pentry;
 	while(paux != NULL){
-		if(strcmp(paux->key, apkey)){
+		if(strcmp(paux->key, apkey) == 0){
 			return paux->value;
 		}
 		paux = paux->pnext;

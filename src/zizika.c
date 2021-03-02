@@ -12,11 +12,12 @@
 #include <stdlib.h>
 #include "include/config.h"
 
-
 int main(void) {
 
 	_config *c = init_config("../conf/sbs.conf");
-	c->pf_parse_entries(c);
+    c->pf_get_config(c, "log");
+
+
 
 	return EXIT_SUCCESS;
 }

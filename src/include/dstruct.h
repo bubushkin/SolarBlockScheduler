@@ -23,9 +23,7 @@ typedef struct list_{
 	_entry *pentry;
 	unsigned int size;
 	void (*pf_add)(struct list_ *, _entry *);
-	void (*pf_remove)(struct list_ *, char *);
 	_entry *(*pf_init_entry)(char *, char*);
-	_entry * (*pf_get)(struct list_ *, char *);
 
 } _list;
 
@@ -33,7 +31,7 @@ typedef struct list_{
 _list * init_list();
 void destruct_list(_list *);
 void add_entry(struct list_ *, _entry *);
-void destruct_entries(_entry *)
+void destruct_entries(_entry *);
 
 _entry *get(_entry *, char *);
 

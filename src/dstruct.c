@@ -16,7 +16,6 @@ _list *init_list(){
 	}
 
 	ilist->pf_add = &add_entry;
-	ilist->pf_get = &get;
 	ilist->pf_init_entry = &init_entry;
 
 	return ilist;
@@ -27,7 +26,6 @@ void destruct_list(_list *aplist){
     destruct_entries(aplist->pentry);
     aplist->pf_add = NULL;
     aplist->pf_init_entry = NULL;
-    aplist->pf_get = NULL;
     free(aplist);
 
 }
@@ -72,7 +70,6 @@ void add_entry(struct list_ *aplist, _entry *apentry){
 	aplist->size++;
 }
 
-
 void destruct_entries(_entry *apentry){
 
     _entry *paux = apentry;
@@ -81,7 +78,4 @@ void destruct_entries(_entry *apentry){
         free(paux->value);
         paux = paux->pnext;
     }
-}
-_entry *get(_entry *apentry, char *apkey){
-
 }
