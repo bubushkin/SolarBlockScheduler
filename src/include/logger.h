@@ -23,10 +23,15 @@ typedef struct logger_ {
 _logger * init_logger(char *);
 void destruct_logger(_logger *);
 
-void error(struct logger_ *, char *);
+void serror(struct logger_ *, char *);
 void info(struct logger_ *, char *);
 void warning(struct logger_ *, char *);
 void debug(struct logger_ *, char *);
-char *gettime(struct logger_ *);
+
+
+#define gettime(X) time_t rawtime; \
+				  time( &rawtime ); \
+				  strftime(X, 18, "%Y%m%d-%H:%M:%S", localtime(&rawtime));
+
 
 #endif //ZIZIKA_LOGGER_H

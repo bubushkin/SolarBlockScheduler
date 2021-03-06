@@ -25,7 +25,6 @@ typedef struct config_{
 _config * init_config(char *);
 void destruct_config(_config *);
 char *get_config(struct config_ *, char *);
-char **split(char *, char);
 
 void parse_entries(struct config_ *);
 

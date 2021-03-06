@@ -16,10 +16,11 @@ _logger *init_logger(char *apath){
         eeprint("Unable to open log file for writing..");
     }
     ilogger->fp_info = &info;
-    ilogger->fp_error = &error;
+    ilogger->fp_error = &serror;
     ilogger->fp_warning = &warning;
     ilogger->fp_debug = &debug;
-    ilogger->fp_gettime = &gettime;
+
+    return ilogger;
 
 }
 
@@ -32,26 +33,26 @@ void destruct_logger(_logger *apconfig){
     apconfig->fp_gettime = NULL;
     free(apconfig);
 }
-void error(struct logger_ *aplogger, char *log){
-    fprintf(aplogger->fp, "%s : ERROR : %s\n", aplogger->fp_gettime(aplogger), log);
+void serror(struct logger_ *aplogger, char *log){
+    char strtime[18];
+    gettime(strtime);
+    fprintf(aplogger->fp, "%s:[ERROR]:%s\n", strtime, log);
 }
 
 void info(struct logger_ *aplogger, char *log){
-    fprintf(aplogger->fp, "%s : INFO : %s\n", aplogger->fp_gettime(aplogger), log);
+    char strtime[18];
+    gettime(strtime);
+    fprintf(aplogger->fp, "%s:[INFO]:%s\n", strtime, log);
 }
 
 void warning(struct logger_ *aplogger, char *log){
-    fprintf(aplogger->fp, "%s : WARNING : %s\n", aplogger->fp_gettime(aplogger), log);
+    char strtime[18];
+    gettime(strtime);
+    fprintf(aplogger->fp, "%s:[WARNING]:%s\n", strtime, log);
 }
 
 void debug(struct logger_ *aplogger, char *log){
-    fprintf(aplogger->fp, "%s : DEBUG : %s\n", aplogger->fp_gettime(aplogger), log);
-}
-
-char *gettime(struct logger_ *aplogger){
     char strtime[18];
-    time_t rawtime;
-    time( &rawtime );
-    strftime(strtime, 18, "%Y%m%d %H:%M:%S", localtime(&rawtime));
-    return strtime;
+    gettime(strtime);
+    fprintf(aplogger->fp, "%s:[DEBUG]:%s\n", strtime, log);
 }

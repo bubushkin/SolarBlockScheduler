@@ -13,18 +13,15 @@
 
 #define MAXLEN 1024
 
-#ifdef __LINUX__
-    #include <error.h>
-#endif
-
 #define new(X, Y) (Y *)calloc(X, sizeof(Y))
 
 #ifdef __APPLE__
     #define eeprint(X) fprintf(stderr, "%s, %d, %s\n", __FILE__, __LINE__, X); exit(EXIT_FAILURE);
-#elif __LINUX__
+#elif __linux__
+    #include <error.h>
     #define eeprint(X) error(0x1, EXIT_FAILURE, "%s, %d, %s\n",__FILE__, __LINE__, X)
 #endif
 
-char **split(char *, char);
+void split(char *, char, char **);
 
 #endif /* INCLUDE_UTIL_H_ */

@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "include/util.h"
 
 _config * init_config(char *apath){
 
@@ -37,9 +38,11 @@ _config * init_config(char *apath){
 void parse_entries(struct config_ *apconfig){
 
 	char line[MAXLEN] = {0};
-
+	char *buffer[2];
 	while(fgets(line, MAXLEN, apconfig->fp)){
-        char **buffer = split(line, '=');
+		buffer[0] = new(128, char);
+		buffer[1] = new(128, char);
+		split(line, '=', buffer);
         _entry *p = apconfig->ientries->pf_init_entry(buffer[0], buffer[1]);
         apconfig->ientries->pf_add(apconfig->ientries, p);
         free(buffer[0]);

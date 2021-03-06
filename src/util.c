@@ -4,19 +4,18 @@
 
 #include "include/util.h"
 
-char **split(char *apline, char delim){
+void split(char *apline, char delim, char **buffer){
 
     int idx = 0, xdx = 0;
     char c = 0xF;
-    char *buffer[2];
     short found = 0;
 
-    if((buffer[0] = new(128, char)) == NULL){
-        eeprint("Malloc failed");
-    }
-    if((buffer[1] = new(128, char)) == NULL){
-        eeprint("Malloc failed");
-    }
+//    if((buffer[0] = new(128, char)) == NULL){
+//        eeprint("Malloc failed");
+//    }
+//    if((buffer[1] = new(128, char)) == NULL){
+//        eeprint("Malloc failed");
+//    }
 
     while(c != NULL){
         c = apline[idx++];
@@ -30,7 +29,7 @@ char **split(char *apline, char delim){
         if(found){
             if(c != '\n')
                 buffer[1][xdx++] = c;
+            else break;
         }
     }
-    return buffer;
 }
