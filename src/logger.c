@@ -21,7 +21,6 @@ _logger *init_logger(char *apath){
     ilogger->fp_debug = &debug;
 
     return ilogger;
-
 }
 
 void destruct_logger(_logger *apconfig){

@@ -22,14 +22,8 @@ int main(void) {
 
     _logger *log = init_logger(path);
 
-    log->fp_debug(log, "This is debug");
-    log->fp_error(log, "This is error");
-    log->fp_info(log, "This is info");
-    log->fp_warning(log, "This is warning");
-
     destruct_logger(log);
-
-
+    destruct_config(c);
 
 	return EXIT_SUCCESS;
 }
