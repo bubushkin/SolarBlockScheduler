@@ -2,7 +2,7 @@
 // Created by Iskandar Askarov on 3/2/21.
 //
 
-#include "include/logger.h"
+#include "logger.h"
 
 _logger *init_logger(char *apath){
     _logger *ilogger = new(0x1, _logger);

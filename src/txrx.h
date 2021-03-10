@@ -10,20 +10,20 @@
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
-#include "include/logger.h"
-#include "include/util.h"
+#include "logger.h"
+#include "util.h"
 
 #define LISTEN_PORT 5900
 #define REMOTE_PORT 5901
 
 struct txrx_ {
 	struct sockaddr_in server_addr;
-	int server_socket = 0;
+	int server_socket;
 
 
 } _txrx;
 
-void listen(struct txrx_ *, _logger *);
+//void listen(struct txrx_ *, _logger *);
 void server_connect(struct txrx_ *, _logger *);
 
 

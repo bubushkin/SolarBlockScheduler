@@ -5,8 +5,8 @@
  *      Author: iskandar
  */
 
-#include "include/txrx.h"
-
+#include "txrx.h"
+/*
 void listen(struct txrx_ *txrx, _logger *logger){
 
 	int valread = 0;
@@ -26,3 +26,4 @@ void listen(struct txrx_ *txrx, _logger *logger){
 	}
 
 }
+*/

@@ -5,11 +5,11 @@
  *      Author: iskandar
  */
 
-#include "include/config.h"
+#include "config.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "include/util.h"
+#include "util.h"
 
 _config * init_config(char *apath){
 

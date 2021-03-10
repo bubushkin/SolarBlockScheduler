@@ -9,7 +9,14 @@
 #define INCLUDE_ENGSTAT_H_
 
 #include <wiringPiI2C.h>
-#include <pcf85691.h>
+#include <stdio.h>
+#include <wiringPi.h>
+#include <stdlib.h>
+#include <softPwm.h>
+#include <math.h>
+#include <wiringPiI2C.h>
+#include <ads1115.h>
+#include <pcf8591.h>
 
 void charge_level(float *);
 

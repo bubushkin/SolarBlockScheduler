@@ -2,7 +2,7 @@
 // Created by Iskandar Askarov on 3/1/21.
 //
 
-#include "include/util.h"
+#include "util.h"
 
 void split(char *apline, char delim, char **buffer){
 

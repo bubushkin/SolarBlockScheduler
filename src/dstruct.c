@@ -5,8 +5,8 @@
  *      Author: iskandar
  */
 
-#include "include/dstruct.h"
-#include "include/util.h"
+#include "dstruct.h"
+#include "util.h"
 
 _list *init_list(){
 
