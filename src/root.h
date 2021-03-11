@@ -9,10 +9,11 @@
 #define INCLUDE_ROOT_H_
 
 #include <pthread.h>
-
+#include <wiringPi.h>
+#include <wiringPiI2C.h>
+#include <pcf8591.h>
 #include "runlevel.h"
-
-
+#include "config.h"
 
 #define GREEN_RN 0xA
 #define YELLOW_RN 0xB
@@ -20,18 +21,15 @@
 #define BLACK_RN 0xD
 #define BASE 120
 
-struct root_{
-	int current_rn = 0xFF;
-	unsigned float current_charge = 0x0;
+typedef struct root_{
+    int fd;
+	int current_rn;
+	double current_charge;
 
+} _root;
 
-};
+_root * init_root(void);
 
-void spawn_system();
-void spawn_user();
-
-void *spawn(void);
-
-
+int detectI2C(_config *, _root *);
 
 #endif /* INCLUDE_ROOT_H_ */
