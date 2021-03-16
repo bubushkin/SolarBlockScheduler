@@ -23,6 +23,14 @@ void destruct_root(_root *aproot){
     free(aproot);
 }
 
+
+void global_init(_config *apconfig, _root *aproot){
+    int i2caddr = detectI2C(apconfig, aproot);
+    wiringPiSetup();
+    pcf8591Setup(BASE,i2caddr);
+}
+
+
 int detectI2C(_config *apconfig, _root *aproot){
     int i2caddr = (int)strtol(apconfig->pf_get_config(apconfig, "i2caddr"), NULL, 0);
     aproot->fd = wiringPiI2CSetup(i2caddr);
@@ -33,5 +41,7 @@ int detectI2C(_config *apconfig, _root *aproot){
             eeprint("No device found at given address");
         }
     }
-    return 1;
+    wiringPiSetup();
+    pcf8591Setup(BASE,i2caddr);
+    return i2caddr;
 }

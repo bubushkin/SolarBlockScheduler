@@ -4,17 +4,26 @@
 
 #include "engstat.h"
 
-/*
-if(detectI2C(0x48)){
-wiringPiSetup();
-pcf8591Setup(BASE,0x48);
-while(1)
-{
-int value = analogRead(A0);
-float voltage = value * 5.0 / 255;
-float current = (voltage - 2.5) / 0.066;
-printf("AOUT: %d VOLTAGE: %f CURRENT: %f\n",value, voltage, current);
-delay(500);
+#define TRUE 1
+
+_engstat *init_engstat(){
+    _engstat *iengstat = new(1, struct engstat_);
+    iengstat->pf_get_current = &current;
+    iengstat->pf_get_voltage = &voltage;
+    return iengstat;
 }
+void destruct_engstat(_engstat *){
+
 }
-*/
+
+float current(void){
+    int value = analogRead(A0);
+    float voltage = value * 5.0 / 255;
+    return (voltage - 2.5) / 0.066;
+
+}
+
+float voltage(void){
+    int value = analogRead(A0);
+    return value * 5.0 / 255;
+}

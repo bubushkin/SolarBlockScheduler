@@ -21,7 +21,7 @@ int main(void) {
 
     char *path = c->pf_get_config(c, "log");
     _root *root = init_root();
-    detectI2C(c, root);
+    global_init(c, root);
 
     _logger *log = init_logger(path);
     destruct_logger(log);

@@ -23,9 +23,12 @@ typedef struct root_{
 	int current_rn;
 	double current_charge;
 
+
 } _root;
 
 _root * init_root(void);
+
+void global_init(_config *, _root *);
 
 int detectI2C(_config *, _root *);
 
