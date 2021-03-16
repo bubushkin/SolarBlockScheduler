@@ -9,9 +9,6 @@
 #define INCLUDE_ROOT_H_
 
 #include <pthread.h>
-#include <wiringPi.h>
-#include <wiringPiI2C.h>
-#include <pcf8591.h>
 #include "runlevel.h"
 #include "config.h"
 

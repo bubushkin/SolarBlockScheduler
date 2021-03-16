@@ -3,6 +3,9 @@
 //
 
 #include "root.h"
+#include <wiringPi.h>
+#include <wiringPiI2C.h>
+#include <pcf8591.h>
 
 _root * init_root(void){
 
@@ -13,8 +16,15 @@ _root * init_root(void){
     return iroot;
 }
 
+void destruct_root(_root *aproot){
+    aproot->fd = NULL;
+    aproot->current_charge = 0x0;
+    aproot->current_rn = NULL;
+    free(aproot);
+}
+
 int detectI2C(_config *apconfig, _root *aproot){
-    int i2caddr = atoi(apconfig->pf_get_config("i2caddr"));
+    int i2caddr = (int)strtol(apconfig->pf_get_config(apconfig, "i2caddr"), NULL, 0);
     aproot->fd = wiringPiI2CSetup(i2caddr);
     if(aproot->fd < 0){
         eeprint("I2C address error");

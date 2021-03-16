@@ -1,3 +1,4 @@
+/*
 #include <stdio.h>
 #include <wiringPi.h>
 #include <stdlib.h>
@@ -15,7 +16,7 @@
 #define ledPin 0
 #define Z_PIN 1
 
-https://create.arduino.cc/projecthub/instrumentation-system/acs712-current-sensor-87b4a6#:~:text=ACS712%20is%20a%20current%20sensor,on%20both%20AC%20and%20DC.&text=The%20output%20of%20this%20current,Read%20pin%20or%20ADC%20pin
+//https://create.arduino.cc/projecthub/instrumentation-system/acs712-current-sensor-87b4a6#:~:text=ACS712%20is%20a%20current%20sensor,on%20both%20AC%20and%20DC.&text=The%20output%20of%20this%20current,Read%20pin%20or%20ADC%20pin
 
 #define motorPin1 2
 #define motorPin2 0
@@ -231,3 +232,4 @@ int main() {
 //    }
 
 }
+*/

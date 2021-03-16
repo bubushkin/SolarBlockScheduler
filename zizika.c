@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include "src/config.h"
 #include "src/logger.h"
+#include "src/root.h"
 
 int main(void) {
 
@@ -19,11 +20,10 @@ int main(void) {
 	_config *c = init_config("../conf/sbs.conf");
 
     char *path = c->pf_get_config(c, "log");
+    _root *root = init_root();
+    detectI2C(c, root);
 
     _logger *log = init_logger(path);
-
-    log->fp_error(log, "This is error");
-
     destruct_logger(log);
 //destruct_config(c);
 
