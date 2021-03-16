@@ -35,5 +35,4 @@ void destruct_engstat(_engstat *);
 float current(void);
 float voltage(void);
 
-
 #endif /* INCLUDE_ENGSTAT_H_ */

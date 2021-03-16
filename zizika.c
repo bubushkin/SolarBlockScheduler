@@ -13,6 +13,7 @@
 #include "src/config.h"
 #include "src/logger.h"
 #include "src/root.h"
+#include "src/engstat.h"
 
 int main(void) {
 
@@ -22,6 +23,10 @@ int main(void) {
     char *path = c->pf_get_config(c, "log");
     _root *root = init_root();
     global_init(c, root);
+
+    _engstat *engstat = init_engstat();
+    float current = engstat->pf_get_current();
+    float voltage = engstat->pf_get_voltage();
 
     _logger *log = init_logger(path);
     destruct_logger(log);

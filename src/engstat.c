@@ -4,23 +4,25 @@
 
 #include "engstat.h"
 
-#define TRUE 1
-
 _engstat *init_engstat(){
     _engstat *iengstat = new(1, struct engstat_);
     iengstat->pf_get_current = &current;
     iengstat->pf_get_voltage = &voltage;
     return iengstat;
 }
-void destruct_engstat(_engstat *){
+void destruct_engstat(_engstat *apengstat){
 
+    apengstat->pf_get_voltage = NULL;
+    apengstat->pf_get_current = NULL;
+    free(apengstat);
 }
 
 float current(void){
+
     int value = analogRead(A0);
     float voltage = value * 5.0 / 255;
-    return (voltage - 2.5) / 0.066;
-
+    float current = (voltage - 2.5) / 0.066;
+    return current;
 }
 
 float voltage(void){

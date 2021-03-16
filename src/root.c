@@ -41,7 +41,5 @@ int detectI2C(_config *apconfig, _root *aproot){
             eeprint("No device found at given address");
         }
     }
-    wiringPiSetup();
-    pcf8591Setup(BASE,i2caddr);
     return i2caddr;
 }

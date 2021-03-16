@@ -29,7 +29,6 @@ _config * init_config(char *apath){
 
 	iconfig->pf_get_config = &get_config;
 	iconfig->pf_parse_entries = &parse_entries;
-
 	iconfig->pf_parse_entries(iconfig);
 
 	return iconfig;
@@ -76,4 +75,3 @@ char *get_config(struct config_ *apconfig, char *apkey){
 	}
 	return NULL;
 }
-
