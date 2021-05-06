@@ -8,7 +8,10 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-
+#include <unistd.h>
+#include <limits.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 typedef struct logger_ {
 
     FILE *fp;
@@ -20,6 +23,11 @@ typedef struct logger_ {
 
 } _logger;
 
+struct aplogger_struct{
+    _logger *plogger;
+    char *pipe_path;
+};
+
 _logger * init_logger(char *);
 void destruct_logger(_logger *);
 
@@ -27,6 +35,8 @@ void serror(struct logger_ *, char *);
 void info(struct logger_ *, char *);
 void warning(struct logger_ *, char *);
 void debug(struct logger_ *, char *);
+
+static void *th_logger_cb(void *arg_struct);
 
 
 #define gettime(X) time_t rawtime; \

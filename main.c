@@ -17,18 +17,18 @@
 
 int main(void) {
 
-	system("pwd");
 	_config *c = init_config("../conf/sbs.conf");
 
-    char *path = c->pf_get_config(c, "log");
-    _root *root = init_root();
-    global_init(c, root);
+    char *logfile = c->pf_get_config(c, "log");
+//    _root *root = init_root();
+//    global_init(c, root);
+//
+//    _engstat *engstat = init_engstat();
+//    float current = engstat->pf_get_current();
+//    float voltage = engstat->pf_get_voltage();
 
-    _engstat *engstat = init_engstat();
-    float current = engstat->pf_get_current();
-    float voltage = engstat->pf_get_voltage();
+    _logger *log = init_logger(logfile);
 
-    _logger *log = init_logger(path);
     destruct_logger(log);
 //destruct_config(c);
 

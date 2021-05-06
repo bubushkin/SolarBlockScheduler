@@ -16,7 +16,7 @@
 #define YELLOW_RN 0xB
 #define RED_RN 0xC
 #define BLACK_RN 0xD
-#define BASE 100
+#define BASE 120
 
 typedef struct root_{
     int fd;

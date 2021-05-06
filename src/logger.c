@@ -2,16 +2,21 @@
 // Created by Iskandar Askarov on 3/2/21.
 //
 
+
 #include "logger.h"
 
 _logger *init_logger(char *apath){
+
     _logger *ilogger = new(0x1, _logger);
+
     if(ilogger == NULL){
         eeprint("Malloc failed");
     }
+
     if(apath == NULL){
         eeprint("Log path is empty. Please set it up.");
     }
+
     if((ilogger->fp = fopen(apath, "a"))==NULL){
         eeprint("Unable to open log file for writing..");
     }
@@ -32,6 +37,7 @@ void destruct_logger(_logger *apconfig){
     apconfig->fp_gettime = NULL;
     free(apconfig);
 }
+
 void serror(struct logger_ *aplogger, char *log){
     char strtime[18];
     gettime(strtime);
@@ -54,4 +60,19 @@ void debug(struct logger_ *aplogger, char *log){
     char strtime[18];
     gettime(strtime);
     fprintf(aplogger->fp, "%s:[DEBUG]:%s\n", strtime, log);
+}
+
+static void *th_logger_cb(void *arg_struct){
+
+    int fd = 0;
+    struct aplogger_struct *args = (struct aplogger_struct *)arg_struct;
+    mkfifo(args->pipe_path, 0666);
+    char rdata[512];
+
+    while(1){
+        fd = open(args->pipe_path, O_WRONLY);
+        read(fd, rdata, sizeof(rdata));
+        args->plogger->fp_info(args->plogger, rdata);
+    }
+
 }
